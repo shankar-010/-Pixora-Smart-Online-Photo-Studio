@@ -50,10 +50,20 @@ Clone the repository and open the project in your browser.
 
 ```bash
 # Clone this repo
-git clone https://github.com/YourGitHubUsername/pixora.git
+git clone https://github.com/shankar-010/-Pixora-Smart-Online-Photo-Studio
 
 # Go inside project folder
 cd pixora
 
 # Open in browser
 start index.html
+
+
+
+🌐 Live Demo
+🔗 https://pixora-smart-online-photo-studio.vercel.app/
+
+
+🧑‍💻 Developer
+Developed by: Shankar Namaji
+💼 Portfolio: https://shankar-portfolio-5nww.vercel.app/
