@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Image Studio - Professional Image Editor</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">✨ Pro Image Studio</div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+    </header>
+
+    <div class="container">
+        <!-- Left Panel - Tools -->
+        <div class="tools-panel">
+            <!-- Upload Section -->
+            <div class="tool-section">
+                <div class="tool-title">📁 Upload Image</div>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📸</div>
+                    <div class="upload-text">Drop or Click to Upload</div>
+                    <div class="upload-subtext">JPG, PNG, WebP (Max 10MB)</div>
+                </div>
+                <input type="file" id="imageInput" accept="image/*">
+            </div>
+
+            <!-- Tabs for different tools -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="filters">Filters</button>
+                <button class="tab-btn" data-tab="adjust">Adjust</button>
+                <button class="tab-btn" data-tab="crop">Crop</button>
+                <button class="tab-btn" data-tab="compare">Compare</button>
+            </div>
+
+            <!-- Filters Tab -->
+            <div id="filters-tab" class="tab-content">
+                <div class="tool-section">
+                    <div class="tool-title">✨ Filters</div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Brightness</span>
+                            <span class="slider-value" id="brightnessValue">100%</span>
+                        </div>
+                        <input type="range" id="brightness" min="0" max="200" value="100">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Contrast</span>
+                            <span class="slider-value" id="contrastValue">100%</span>
+                        </div>
+                        <input type="range" id="contrast" min="0" max="200" value="100">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Saturation</span>
+                            <span class="slider-value" id="saturationValue">100%</span>
+                        </div>
+                        <input type="range" id="saturation" min="0" max="200" value="100">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Hue Rotation</span>
+                            <span class="slider-value" id="hueValue">0°</span>
+                        </div>
+                        <input type="range" id="hue" min="0" max="360" value="0">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Blur</span>
+                            <span class="slider-value" id="blurValue">0px</span>
+                        </div>
+                        <input type="range" id="blur" min="0" max="20" value="0">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Grayscale</span>
+                            <span class="slider-value" id="grayscaleValue">0%</span>
+                        </div>
+                        <input type="range" id="grayscale" min="0" max="100" value="0">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Sepia</span>
+                            <span class="slider-value" id="sepiaValue">0%</span>
+                        </div>
+                        <input type="range" id="sepia" min="0" max="100" value="0">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Inversion</span>
+                            <span class="slider-value" id="inversionValue">0%</span>
+                        </div>
+                        <input type="range" id="inversion" min="0" max="100" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Adjust Tab -->
+            <div id="adjust-tab" class="tab-content" style="display: none;">
+                <div class="tool-section">
+                    <div class="tool-title">🎚️ Adjustments</div>
+                    <button class="btn btn-secondary" id="resetFilters">Reset Filters</button>
+                </div>
+            </div>
+
+            <!-- Crop Tab -->
+            <div id="crop-tab" class="tab-content" style="display: none;">
+                <div class="tool-section">
+                    <div class="tool-title">✂️ Crop & Resize</div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Width</span>
+                            <span class="slider-value" id="widthValue">-</span>
+                        </div>
+                        <input type="number" id="cropWidth" placeholder="Width" min="1">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Height</span>
+                            <span class="slider-value" id="heightValue">-</span>
+                        </div>
+                        <input type="number" id="cropHeight" placeholder="Height" min="1">
+                    </div>
+
+                    <button class="btn btn-primary" id="applyCrop">Apply Crop</button>
+                    <button class="btn btn-secondary" id="resetCrop">Reset Crop</button>
+                </div>
+            </div>
+
+            <!-- Compare Tab -->
+            <div id="compare-tab" class="tab-content" style="display: none;">
+                <div class="tool-section">
+                    <div class="tool-title">🔄 Before/After</div>
+                    <button class="btn btn-primary" id="enableComparison">Enable Comparison</button>
+                    <button class="btn btn-secondary" id="disableComparison" style="display: none;">Disable Comparison</button>
+                </div>
+            </div>
+
+            <!-- Save Section -->
+            <div class="tool-section">
+                <div class="tool-title">💾 Save & Export</div>
+
+                <select id="formatSelect" class="input-group">
+                    <option value="png">PNG (Lossless)</option>
+                    <option value="jpeg">JPEG (Compressed)</option>
+                    <option value="webp">WebP (Modern)</option>
+                </select>
+
+                <button class="btn btn-success" id="saveImage">Save Image</button>
+                <button class="btn btn-danger" id="resetImage">Reset All</button>
+            </div>
+        </div>
+
+        <!-- Right Panel - Preview -->
+        <div class="preview-panel">
+            <div class="image-preview-container" id="previewContainer">
+                <canvas id="imageCanvas"></canvas>
+            </div>
+        </div>
+    </div>
+    </body>
+    <script src="script.js"></script>
+</html>
